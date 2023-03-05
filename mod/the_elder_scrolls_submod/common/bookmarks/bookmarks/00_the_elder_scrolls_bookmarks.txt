@@ -1,0 +1,636 @@
+# bm_group_test = {
+#     default_start_date = 3360.1.1
+#     bookmark = {
+#         name = "The Elder Scrolls: Dawn Era"
+#         date = 3360.1.1
+#         playable = yes
+#         culture = nordic
+#         religion = nordic_pagan_reformed
+#     }
+# }
+
+# bm_group_test2 = {
+#     default_start_date = 3370.1.1
+#     bookmark = {
+#         name = "The Elder Scrolls: Skyrim Civil War"
+#         date = 3370.1.1
+#         playable = yes
+#         culture = nordic
+#         religion = skyrim_nordic_religion
+#     }
+# }
+
+bookmark = {
+	id = "elder_scrolls_iv"
+	category = elder_scrolls
+    ##This bookmark group includes the previous bookmarks for the Oblivion Crisis and its three DLCs, as well as new bookmarks for each of these DLCs: Knights of the Nine, Shivering Isles, and Mehrunes' Razor. Each bookmark has its own unique events and modifiers to reflect the different quests and storylines in each DLC.
+
+
+	bookmarks = {
+		bookmark = {
+			id = "oblivion_bookmarks"
+			category = elder_scrolls_iv
+			name = "The Oblivion Crisis"
+			icon = "gfx/interface/bookmarks/elder_scrolls_iv/oblivion_bookmark.dds"
+			color = { 190 255 190 }
+			tooltip = "The Oblivion Crisis bookmarks."
+			events = {
+				# Oblivion Crisis
+				event = {
+					id = oc_start
+					title = "The Oblivion Crisis Begins"
+					desc = "The forces of Oblivion have invaded Tamriel. Daedric armies have emerged from six Oblivion Gates that have opened all across the land. The fate of Tamriel hangs in the balance."
+					date = 433.1.1
+					offset = -5
+					culture = cyrodiilic
+					religion = nine_divines
+					add_character_modifier = {
+						modifier = oc_start
+					}
+				}
+
+				event = {
+					id = oc_end
+					title = "The Oblivion Crisis Ends"
+					desc = "The Hero of Kvatch has closed the gates of Oblivion and banished the Daedric armies back to their own realm. Tamriel is saved."
+					date = 433.12.31
+					offset = 5
+					culture = cyrodiilic
+					religion = nine_divines
+					remove_character_modifier = {
+						modifier = oc_start
+					}
+				}
+
+				# Knights of the Nine DLC
+				event = {
+					id = kotn_start
+					title = "The Crusader's Relics Resurface"
+					desc = "The Crusader's Relics have resurfaced and a new hero must rise to wield them. The fate of the Nine Divines rests in your hands."
+					date = 433.1.1
+					offset = -5
+					culture = cyrodiilic
+					religion = nine_divines
+					add_character_modifier = {
+						modifier = kotn_start
+					}
+				}
+
+				event = {
+					id = kotn_end
+					title = "The Crusader's Quest is Complete"
+					desc = "The Hero of Kvatch has retrieved the Crusader's Relics and completed the quest of the Knights of the Nine. The Nine Divines are pleased."
+					date = 433.12.31
+					offset = 5
+					culture = cyrodiilic
+					religion = nine_divines
+					remove_character_modifier = {
+						modifier = kotn_start
+					}
+				}
+
+				# Shivering Isles DLC
+				event = {
+					id = si_start
+					title = "Enter the Shivering Isles"
+					desc = "Enter the strange and dangerous realm of the Daedric Prince of Madness. Will you emerge as a hero or succumb to the madness that surrounds you?"
+					date = 433.1.1
+					offset = -5
+					culture = cyrodiilic
+					religion = nine_divines
+					add_character_modifier = {
+						modifier = si_start
+					}
+				}
+
+				event = {
+                    id = si_end
+                    title = "Return from the Shivering Isles"
+                    desc = "The Hero of Kvatch has defeated the Daedric Prince of Madness and returned from the Shivering Isles. Tamriel is safe from the threat of the Madgod, at least for now."
+                    date = 433.12.31
+                    offset = 5
+                    culture = cyrodiilic
+                    religion = nine_divines
+                    remove_character_modifier = {
+                        modifier = si_start
+                    }
+                }
+    
+                # Mehrunes' Razor DLC
+                event = {
+                    id = mehrunes_start
+                    title = "The Hunt for Mehrunes' Razor Begins"
+                    desc = "The Mythic Dawn cult has returned, and they seek the power of Mehrunes' Razor. Will you be able to stop them and claim the powerful artifact for yourself?"
+                    date = 433.1.1
+                    offset = -5
+                    culture = cyrodiilic
+                    religion = nine_divines
+                    add_character_modifier = {
+                        modifier = mehrunes_start
+                    }
+                }
+    
+                event = {
+                    id = mehrunes_end
+                    title = "The Hunt for Mehrunes' Razor is Over"
+                    desc = "The Hero of Kvatch has defeated the Mythic Dawn and claimed Mehrunes' Razor. Tamriel is safe from their sinister machinations... for now."
+                    date = 433.12.31
+                    offset = 5
+                    culture = cyrodiilic
+                    religion = nine_divines
+                    remove_character_modifier = {
+                        modifier = mehrunes_start
+                    }
+                }
+            }
+        }
+        bookmark = {
+            name = "Tamriel during the Oblivion Crisis: High Rock"
+            desc = "Experience the Oblivion Crisis as the people of High Rock."
+        
+            modifier = {
+                factor = 0.1
+                local_defense = 0.5
+                local_fort_level = 1.0
+                local_fort_level_factor = 0.5
+                local_tax_modifier = -0.1
+                local_build_speed = -0.1
+            }
+        
+            event = {
+                id = 10000
+                title = "The Daedric Invasion Begins"
+                desc = "The Oblivion Gates have opened across Tamriel, and the daedra are pouring through."
+                picture = GFX_evt_oblivion_crisis
+        
+                fire_only_once = yes
+                is_triggered_only = yes
+                hide_window = yes
+                immediate = yes
+        
+                option = {
+                    name = "We must prepare for war!"
+                    add_global_flag = daedric_invasion_begins
+                    add_province_modifier = {
+                        name = "Oblivion Crisis"
+                        modifier = {
+                            factor = 0.2
+                            local_defense = 1.0
+                            local_fort_level = 2.0
+                            local_fort_level_factor = 1.0
+                            local_tax_modifier = -0.2
+                            local_build_speed = -0.2
+                        }
+                    }
+                }
+        
+                option = {
+                    name = "We should seek help from the Empire."
+                    add_global_flag = daedric_invasion_begins
+                    add_country_modifier = {
+                        name = "Aid from the Empire"
+                        modifier = {
+                            factor = 0.1
+                            global_tax_modifier = 0.1
+                            global_defense = 0.1
+                        }
+                    }
+                }
+        
+                option = {
+                    name = "We must flee and find refuge elsewhere."
+                    add_global_flag = daedric_invasion_begins
+                    add_country_modifier = {
+                        name = "Refugee Crisis"
+                        modifier = {
+                            factor = -0.2
+                            global_tax_modifier = -0.2
+                            global_defense = -0.2
+                        }
+                    }
+                }
+            }
+        }
+        
+        bookmark = {
+            name = "Tamriel during the Oblivion Crisis: Hammerfell"
+            desc = "Experience the Oblivion Crisis as the people of Hammerfell."
+        
+            modifier = {
+                factor = 0.1
+                local_defense = 0.5
+                local_fort_level = 1.0
+                local_fort_level_factor = 0.5
+                local_tax_modifier = -0.1
+                local_build_speed = -0.1
+            }
+        
+            event = {
+                id = 10001
+                title = "The Siege of Stros M'kai"
+                desc = "The Daedric invasion has reached Hammerfell, and the city of Stros M'kai is under siege."
+                picture = GFX_evt_oblivion_crisis
+        
+                fire_only_once = yes
+                is_triggered_only = yes
+                hide_window = yes
+                immediate = yes
+        
+                option = {
+                    name = "We must rally our forces and break the siege!"
+                    add_global_flag = daedric_invasion_begins
+                    add_province_modifier = {
+                        name = "Oblivion Crisis"
+                        modifier = {			factor = 0.2
+                        local_defense = 1.0
+                        local_fort_level = 2.0
+                        local_fort_level_factor = 1.0
+                        local_tax_modifier = -0.2
+                        local_build_speed = -0.2
+                    }
+                }
+            
+                option = {
+                    name = "We should seek help from our allies."
+                    add_global_flag = daedric_invasion_begins
+                    add_country_modifier = {
+                        name = "Aid from our allies"
+                        modifier = {
+                            factor = 0.1
+                            global_tax_modifier = 0.1
+                            global_defense = 0.1
+                        }
+                    }
+                }
+            
+                option = {
+                    name = "We must abandon the city and escape by sea."
+                    add_global_flag = daedric_invasion_begins
+                    add_country_modifier = {
+                        name = "Refugee Crisis"
+                        modifier = {
+                            factor = -0.2
+                            global_tax_modifier = -0.2
+                            global_defense = -0.2
+                        }
+                    }
+                }
+            }
+        }
+    }
+    bookmark = {
+        name = "Tamriel during the Oblivion Crisis: Morrowind"
+        desc = "Experience the Oblivion Crisis as the people of Morrowind."
+        modifier = {
+            factor = 0.1
+            local_defense = 0.5
+            local_fort_level = 1.0
+            local_fort_level_factor = 0.5
+            local_tax_modifier = -0.1
+            local_build_speed = -0.1
+        }
+        
+        event = {
+            id = 10002
+            title = "The Fall of Ald'ruhn"
+            desc = "The Daedric invasion has reached Morrowind, and the city of Ald'ruhn has fallen to the daedra."
+            picture = GFX_evt_oblivion_crisis
+        
+            fire_only_once = yes
+            is_triggered_only = yes
+            hide_window = yes
+            immediate = yes
+        
+            option = {
+                name = "We must reclaim Ald'ruhn and drive back the daedra!"
+                add_global_flag = daedric_invasion_begins
+                add_province_modifier = {
+                    name = "Oblivion Crisis"
+                    modifier = {
+                        factor = 0.2
+                        local_defense = 1.0
+                        local_fort_level = 2.0
+                        local_fort_level_factor = 1.0
+                        local_tax_modifier = -0.2
+                        local_build_speed = -0.2
+                    }
+                }
+            }
+        
+            option = {
+                name = "We should seek aid from the Tribunal Temple."
+                add_global_flag = daedric_invasion_begins
+                add_country_modifier = {
+                    name = "Aid from the Tribunal"
+                    modifier = {
+                        factor = 0.1
+                        global_tax_modifier = 0.1
+                        global_defense = 0.1
+                    }
+                }
+            }
+        
+            option = {
+                name = "We must abandon the city and seek refuge elsewhere."
+                add_global_flag = daedric_invasion_begins
+                add_country_modifier = {
+                    name = "Refugee Crisis"
+                    modifier = {
+                        factor = -0.2
+                        global_tax_modifier = -0.2
+                        global_defense = -0.2
+                    }
+                }
+            }
+        }
+    }
+    bookmark = {
+        name = "Tamriel during the Oblivion Crisis: Summerset Isle"
+        desc = "Experience the Oblivion Crisis as the people of Summerset Isle."
+        modifier = {
+            factor = 0.1
+            local_defense = 0.5
+            local_fort_level = 1.0
+            local_fort_level_factor = 0.5
+            local_tax_modifier = -0.1
+            local_build_speed = -0.1
+        }
+        
+        event = {
+            id = 10003
+            title = "The Sacking of Cloudrest"
+            desc = "The Daedric invasion has reached Summerset Isle, and the city of Cloudrest has been sacked by the daedra."
+            picture = GFX_evt_oblivion_crisis
+        
+            fire_only_once = yes
+            is_triggered_only = yes
+            hide_window = yes
+            immediate = yes
+        
+            option = {
+                name = "We must retake Cloudrest and drive back the daedra!"
+                add_global_flag = daedric_invasion_begins
+                add_province_modifier = {
+                    name = "Oblivion Crisis"
+                    modifier = {
+                        factor = 0.2
+                        local_defense = 1.0
+                        local_fort_level = 2.0
+                        local_fort_level_factor = 1.0
+                        local_tax_modifier = -0.2
+                        local_build_speed = -0.2
+                    }
+                }
+            }
+        
+            option = {
+                name = "We should seek aid from the Altmeri Dominion."
+                add_global_flag = daedric_invasion_begins
+                add_country_modifier = {
+                    name = "Aid from the Dominion"
+                    modifier = {
+                        factor = 0.1
+                        global_tax_modifier = 0.1
+                        global_defense = 0.1
+                    }
+                }
+            }
+        
+            option = {
+                name = "We must abandon Cloudrest and evacuate our people."
+                add_global_flag = daedric_invasion_begins
+                add_country_modifier = {
+                    name = "Refugee Crisis"
+                    modifier = {
+                        factor = -0.2
+                        global_tax_modifier = -0.2
+                        global_defense = -0.2
+                    }
+                }
+            }
+        }
+    }
+    bookmark = {
+        name = "Tamriel during the Oblivion Crisis: Blackwood"
+        desc = "Experience the Oblivion Crisis as the people of Blackwood."
+# event = {
+# 	id = 10004
+# 	title = "The Siege of Leyawiin"
+# 	desc = "The Daedric invasion has reached Blackwood, and the city of Leyawiin is under siege by the daedra."
+# 	picture = GFX_evt_oblivion_crisis
+
+# 	fire_only_once = yes
+# 	is_triggered_only = yes
+# 	hide_window = yes
+# 	immediate = yes
+
+# 	option = {
+# 		name = "We must break the siege and drive back the daedra!"
+# 		add_global_flag = daedric_invasion_begins
+# 		add_province_modifier = {
+# 			name = "Oblivion Crisis"
+# 			modifier = {
+# 				factor = 0.2
+# 				local_defense = 1.0
+# 				local_fort_level = 2.0
+# modifier = {
+# 	factor = 0.1
+# 	local_defense = 0.5
+# 	local_fort_level = 1.0
+# 	local_fort_level_factor = 0.5
+# 	local_tax_modifier = -0.1
+# 	local_build_speed = -0.1
+# }
+modifier = {
+	factor = 0.1
+	local_defense = 0.5
+	local_fort_level = 1.0
+	local_fort_level_factor = 0.5
+	local_tax_modifier = -0.1
+	local_build_speed = -0.1
+}
+
+event = {
+	id = 10005
+	title = "The Oblivion Gate in Blackwood"
+	desc = "A portal to Oblivion has opened in Blackwood, and the daedra are pouring out."
+	picture = GFX_evt_oblivion_crisis
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = yes
+
+	option = {
+		name = "We must destroy the Oblivion Gate and drive back the daedra!"
+		add_global_flag = daedric_invasion_begins
+		add_province_modifier = {
+			name = "Oblivion Crisis"
+			modifier = {
+				factor = 0.2
+				local_defense = 1.0
+				local_fort_level = 2.0
+				local_fort_level_factor = 1.0
+				local_tax_modifier = -0.2
+				local_build_speed = -0.2
+			}
+		}
+	}
+
+	option = {
+		name = "We should seek aid from the Fighters Guild."
+		add_global_flag = daedric_invasion_begins
+		add_country_modifier = {
+			name = "Aid from the Fighters Guild"
+			modifier = {
+				factor = 0.1
+				global_tax_modifier = 0.1
+				global_defense = 0.1
+			}
+		}
+	}
+
+	option = {
+		name = "We must abandon the region and seek refuge elsewhere."
+		add_global_flag = daedric_invasion_begins
+		add_country_modifier = {
+			name = "Refugee Crisis"
+			modifier = {
+				factor = -0.2
+				global_tax_modifier = -0.2
+				global_defense = -0.2
+			}
+		}
+	}
+}
+}
+
+bookmark = {
+name = "Tamriel during the Oblivion Crisis: Elsweyr"
+desc = "Experience the Oblivion Crisis as the people of Elsweyr."
+date = 3.7.2.1 # 17 Last Seed, 3E 433
+modifier = {
+	factor = 0.1
+	local_defense = 0.5
+	local_fort_level = 1.0
+	local_fort_level_factor = 0.5
+	local_tax_modifier = -0.1
+	local_build_speed = -0.1
+}
+
+	characters = {
+		# Rulers of Elsweyr
+		876 = {
+			character = 876 # King Mane Camoran
+			flags = {
+				bookmarked = yes
+			}
+		}
+		877 = {
+			character = 877 # Queen Nulema
+			flags = {
+				bookmarked = yes
+			}
+		}
+
+		# Elsweyr nobles
+		878 = {
+			character = 878 # Lord Dro'Zel
+			flags = {
+				bookmarked = yes
+			}
+		}
+		879 = {
+			character = 879 # Lady Ashur-Dah
+			flags = {
+				bookmarked = yes
+			}
+		}
+
+		# Oblivion Crisis-related characters
+		880 = {
+			character = 880 # Champion of Cyrodiil
+			flags = {
+				bookmarked = yes
+			}
+		}
+		881 = {
+			character = 881 # Martin Septim
+			flags = {
+				bookmarked = yes
+			}
+		}
+	}
+
+	provinces = { 112 113 114 115 116 117 }
+
+	events = {
+		# Oblivion Crisis events
+		50000 # Oblivion Crisis: Gate Opens
+		50001 # Oblivion Crisis: Gate Closed
+
+		# Elsweyr-specific events
+		50500 # Elsweyr: Rimmen Under Siege
+		50501 # Elsweyr: Defend Rimmen
+		50502 # Elsweyr: Attack the Oblivion Gate
+	}
+
+	modifiers = {
+		# Elsweyr modifiers
+		112_modifier = {
+			name = "Oblivion Crisis: Siege of Rimmen"
+			hidden = yes
+			duration = -1
+			levy_size = -0.5
+			morale_damage = 0.2
+			build_cost = 0.5
+		}
+		113_modifier = {
+			name = "Oblivion Crisis: Gate of Khajiit"
+			hidden = yes
+			duration = -1
+			levy_size = -0.2
+			morale_damage = 0.1
+			build_cost = 0.2
+		}
+		114_modifier = {
+			name = "Oblivion Crisis: Southern Elsweyr"
+			hidden = yes
+			duration = -1
+			levy_size = -0.3
+			morale_damage = 0.1
+			build_cost = 0.3
+		}
+	}
+
+
+event = {
+	id = 10006
+	title = "The Burning of Senchal"
+	desc = "The city of Senchal in Elsweyr is under attack by the daedra, and the people are in a panic."
+	picture = GFX_evt_oblivion_crisis
+
+	fire_only_once = yes
+	is_triggered_only = yes
+	hide_window = yes
+	immediate = yes
+
+	option = {
+		name = "We must defend Senchal and drive back the daedra!"
+		add_global_flag = daedric_invasion_begins
+		add_province_modifier = {
+			name = "Oblivion Crisis"
+			modifier = {
+				factor = 0.2
+				local_defense = 1.0
+				local_fort_level = 2.0
+				local_fort_level_factor = 1.0
+				local_tax_modifier = -0.2
+				local_build_speed = -0.2
+            }
+        }
+    }
+}
+}
+}
+}
